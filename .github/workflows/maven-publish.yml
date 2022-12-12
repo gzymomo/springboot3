@@ -26,8 +26,14 @@ jobs:
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
-
+    - name: Set up GraalVM Native Image toolchain
+      uses: helpermethod/graalvm-native-image-toolchain@0.0.2
+      with:
+        graalvm-version: 22.3.0
+        java-version: 17
     - name: Build with Maven
       run: mvn -Pnative native:compile
+      
+
 
 
